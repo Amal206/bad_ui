@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minecraft Horror Mode</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+
+    body {
+      background-color: #1a1a1a;
+      background-image: url('2.gif');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      font-family: 'Russo One', sans-serif;
+      color: #FF00FF;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+      animation: neonFlicker 3s infinite alternate;
+    }
+
+    @keyframes neonFlicker {
+      0% { color: #FF00FF; text-shadow: 0 0 5px #FF00FF, 0 0 10px #FF00FF, 0 0 15px #FF00FF; }
+      50% { color: #FFFF00; text-shadow: 0 0 5px #FFFF00, 0 0 10px #FFFF00, 0 0 15px #FFFF00; }
+      100% { color: #00FF00; text-shadow: 0 0 5px #00FF00, 0 0 10px #00FF00, 0 0 15px #00FF00; }
+    }
+
+    header, main {
+      text-align: center;
+      color: #FF00FF;
+      text-shadow: 3px 3px 8px red, 0 0 25px purple, 0 0 5px pink;
+    }
+
+    h1 {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      animation: shake 0.5s infinite alternate, neonText 2s infinite;
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      50% { transform: translateX(10px); }
+      100% { transform: translateX(-10px); }
+    }
+
+    @keyframes neonText {
+      0% { color: #FF00FF; text-shadow: 0 0 5px #FF00FF, 0 0 10px #FF00FF, 0 0 15px #FF00FF; }
+      100% { color: #FFFF00; text-shadow: 0 0 5px #FFFF00, 0 0 10px #FFFF00, 0 0 15px #FFFF00; }
+    }
+
+    p {
+      font-size: 2rem;
+      text-shadow: 2px 2px 6px black, 0 0 15px yellow;
+      animation: bounce 1.5s ease-in-out infinite, neonFlicker 3s infinite alternate;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    .copyright {
+  position: absolute;
+  top: 50%; /* Start at the vertical center */
+  left: 50%; /* Start at the horizontal center */
+  font-size: 1rem;
+  color: #FF00FF;
+  text-shadow: 0 0 5px #FF00FF, 0 0 10px #FF00FF, 0 0 15px #FF00FF;
+  animation: fullPageMovement 10s linear infinite, neonText 2s infinite;
+  transform-origin: center;
+  white-space: nowrap;
+}
+
+@keyframes fullPageMovement {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  25% {
+    transform: translate(50vw, -50%) rotate(90deg); /* Move right and rotate */
+  }
+  50% {
+    transform: translate(50vw, 50vh) rotate(180deg); /* Move bottom-right and rotate */
+  }
+  75% {
+    transform: translate(-50vw, 50vh) rotate(270deg); /* Move bottom-left and rotate */
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg); /* Return to center */
+  }
+}
+
+@keyframes neonText {
+  0% {
+    color: #FF00FF;
+    text-shadow: 0 0 5px #FF00FF, 0 0 10px #FF00FF, 0 0 15px #FF00FF;
+  }
+  100% {
+    color: #FFFF00;
+    text-shadow: 0 0 5px #FFFF00, 0 0 10px #FFFF00, 0 0 15px #FFFF00;
+  }
+}
+
+      
+      
+
+    form {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 30px;
+      border-radius: 15px;
+      border: 2px solid #FF00FF;
+      width: 100%;
+      max-width: 500px;
+      margin-top: 20px;
+      box-shadow: 0 0 15px #FF00FF, 0 0 30px purple;
+      animation: shake 1s infinite alternate;
+    }
+
+    input[type="text"], input[type="email"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      font-size: 18px;
+      border-radius: 10px;
+      text-align: center;
+      border: 2px solid #FF00FF;
+      background-color: #333;
+      color: #FF00FF;
+      font-family: 'Russo One', sans-serif;
+      animation: bounce 1.5s ease-in-out infinite;
+    }
+
+    input::placeholder {
+      color: #FF99FF;
+    }
+
+    button {
+      background-color: #8A2BE2;
+      color: #fff;
+      padding: 12px 30px;
+      font-size: 20px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 0 15px #FF00FF;
+      text-transform: uppercase;
+      animation: shake 1s infinite alternate;
+    }
+
+    button:hover {
+      background-color: #FF00FF;
+      color: #000;
+      box-shadow: 0 0 25px #FF00FF;
+    }
+
+    #messages {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      margin-top: 20px;
+      font-size: 2rem;
+      color: #FF00FF;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      border-radius: 15px;
+      border: 3px dashed #FF00FF;
+      box-shadow: 0 0 20px #FF00FF, 0 0 30px purple;
+      display: none;
+      text-align: center;
+      animation: moveMessage 2s ease-in-out forwards;
+    }
+
+    @keyframes moveMessage {
+      0% { transform: translate(-50%, -50%) translateX(0); opacity: 0; }
+      100% { transform: translate(-50%, -50%) translateX(100px); opacity: 1; }
+    }
+
+    .option-buttons {
+      margin-top: 15px;
+    }
+
+    .option-buttons button {
+      background-color: #8A2BE2;
+      color: #fff;
+      padding: 12px 25px;
+      border-radius: 10px;
+      font-size: 1.2rem;
+      margin: 5px;
+      animation: shake 1s infinite alternate;
+    }
+
+    .option-buttons button:hover {
+      background-color: #FF00FF;
+      color: #000;
+    }
+
+    .gif-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .funny-return-button {
+        display: none;
+        background-color: #00FF00;
+        color: #000;
+        font-size: 1.5rem;
+        padding: 15px 30px;
+        border-radius: 15px;
+        border: 2px dashed #FF00FF;
+        text-shadow: 0 0 10px #FF00FF;
+        margin-top: 20px;
+        animation: bounce 2s infinite alternate;
+      }
+  
+      .funny-return-button:hover {
+        background-color: #FF00FF;
+        color: #fff;
+        box-shadow: 0 0 25px #FF00FF;
+      }
+     /* Pac-Man animation */
+     /* Animation Pac-Man */
+     .pacman {
+       position: absolute;
+       width: 30px;
+       height: 30px;
+       background-color: yellow;
+       border-radius: 50%;
+       z-index: 100;
+       animation: pacmanMove 1s forwards;
+     }
+ 
+     @keyframes pacmanMove {
+       0% {
+         transform: translate(0, 0);
+       }
+       50% {
+         transform: translate(50px, 0); /* Pac-Man se déplace pour avaler les lettres */
+       }
+       100% {
+         transform: translate(100px, 0); /* Pac-Man finit son mouvement */
+         opacity: 0;
+       }
+     }
+ 
+     /* Animation des lettres mangées */
+     .eaten-letter {
+       opacity: 0;
+       transform: scale(0);
+       transition: transform 0.3s ease, opacity 0.3s ease;
+     }
+  </style>
+</head>
+<body>
+  <header id="welcomeMessage">
+    <h1>Bad UI !</h1>
+    <!-- Added copyright message -->
+    <div class="copyright">Copyright © 2024 HUNTER X HUNTER</div>
+  </header>
+
+  <main>
+    <form id="userForm">
+      <label for="name">Nom :</label>
+      <input type="text" id="name" name="name" placeholder="Entrez votre nom" required>
+      
+      <label for="surname">Prenom :</label>
+      <input type="text" id="surname" name="surname" placeholder="Entrez votre prénom" required>
+
+      <label for="email">Email :</label>
+      <input type="email" id="email" name="email" placeholder="Entrez votre email" required>
+
+      <label for="message">Message :</label>
+      <input type="text" id="message" name="message" placeholder="Entrez votre message" required>
+      
+      <button type="button" id="moveButton">Envoyer</button>
+    </form>
+
+    <div id="messages" role="alert" aria-live="polite"></div>
+    <div id="gifContainer" class="gif-container" style="display: none;">
+      <img id="alertGif" src="4.gif" alt="Minecraft Horror GIF" width="800" height="450">
+    </div>
+    <button id="returnButton" class="funny-return-button">Retour</button>
+  </main>
+
+  <script>
+    let messageCount = 0;
+    let moveCount = 0;
+
+    const messages = [
+      "Question 1: Oserez-vous continuer ?",
+      "Question 2: Vraiment ? Vous n'avez pas peur ?",
+      "Question 3: Dernière chance de faire demi-tour...",
+      "Question 4: Trop tard ! Vous êtes piégé pour toujours..."
+    ];
+
+    function moveButton() {
+      if (moveCount < 5) {
+        moveCount++;
+        const randomX = Math.floor(Math.random() * 80) + 10;
+        const randomY = Math.floor(Math.random() * 80) + 10;
+
+        document.getElementById("moveButton").style.position = "absolute";
+        document.getElementById("moveButton").style.left = `${randomX}%`;
+        document.getElementById("moveButton").style.top = `${randomY}%`;
+      } else {
+        document.getElementById("userForm").style.display = "none";
+        const messageDiv = document.getElementById("messages");
+        messageDiv.style.display = "block";
+        document.getElementById("welcomeMessage").style.display = "none";
+        showNextMessage();
+      }
+    }
+
+    function showNextMessage() {
+      if (messageCount < messages.length) {
+        const messageDiv = document.getElementById("messages");
+        messageDiv.innerHTML = `<p>${messages[messageCount]}</p>
+          <div class="option-buttons">
+            <button onclick="showNextMessage()">Oui</button>
+            <button onclick="showNextMessage()">Non</button>
+          </div>`;
+
+        // Apply animation
+        messageDiv.classList.remove('moveMessage');
+        void messageDiv.offsetWidth; // Trigger reflow
+        messageDiv.classList.add('moveMessage');
+
+        messageCount++;
+      } else {
+        document.getElementById("messages").style.display = "none";
+        document.getElementById("gifContainer").style.display = "flex";
+      }
+    }
+    function resetExperience() {
+        messageCount = 0;
+        moveCount = 0;
+        document.getElementById("userForm").style.display = "block";
+        document.getElementById("messages").style.display = "none";
+        document.getElementById("gifContainer").style.display = "none";
+        document.getElementById("welcomeMessage").style.display = "block";
+        document.getElementById("returnButton").style.display = "none";
+        const moveButton = document.getElementById("moveButton");
+        moveButton.style.position = "static";
+      }
+      // Sélectionne tous les champs du formulaire
+  const inputs = document.querySelectorAll("#userForm input");
+
+  // Ajoute l'événement 'blur' (quand le champ perd le focus)
+  inputs.forEach((input) => {
+    let erasedOnce = false; // Suivi de l'effacement du champ
+
+    input.addEventListener("blur", (event) => {
+      // Si le champ n'a pas encore été effacé et contient une valeur
+      if (!erasedOnce && event.target.value.trim() !== "") {
+        erasedOnce = true; // Marque ce champ comme effacé
+
+        // Ajoute la classe d'animation
+        event.target.classList.add("funny-disappear");
+
+        // Supprime la valeur après la fin de l'animation
+        setTimeout(() => {
+          event.target.value = ""; // Vide le champ
+          event.target.classList.remove("funny-disappear"); // Retire la classe
+        }, 800); // Durée de l'animation (0.8s)
+      }
+    });
+  });
+
+      document.getElementById("moveButton").addEventListener("click", moveButton);
+      document.getElementById("returnButton").addEventListener("click", resetExperience);
+  </script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
